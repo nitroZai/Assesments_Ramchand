@@ -1,5 +1,4 @@
 import csv
-from operator import delitem
 import time
 import random
 
