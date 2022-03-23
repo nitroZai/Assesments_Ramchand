@@ -66,45 +66,45 @@ def test_inheritance_overrides():
     assert "A:f()" == b.f()
     assert "B:g()" == b.g()
 
-# def test_inheritance_init():
-#     class A(object):
-#         def __init__(self):
-#             self.a1 = []
+def test_inheritance_init():
+    class A(object):
+        def __init__(self):
+            self.a1 = []
 
-#         def append(self, obj):
-#             self.a1.append(obj)
+        def append(self, obj):
+            self.a1.append(obj)
 
-#     class B(A):
-#         def __init__(self):
-#             self.b1 = []
+    class B(A):
+        def __init__(self):
+            self.b1 = []
 
-#     a = A()
-    #assert None == getattr(a, "a1", None)
-    #assert None == getattr(a, "b1", None)
+    a = A()
+    assert  [] == getattr(a, "a1", None)
+    assert None == getattr(a, "b1", None)
 
-    # b = B()
-    # assert None == getattr(b, "a1", None)
-    # assert None == getattr(b, "b1", None)
+    b = B()
+    assert None == getattr(b, "a1", None)
+    assert [] == getattr(b, "b1", None)
 
-    # try:
-    #     b.append("orange")
-    # except NameError as ne:  #what happened here?
-    #     pass
+    try:
+        b.append("orange")
+    except AttributeError as ae :  #what happened here?
+        pass
 
     # Since methods of A depend on init being called, we must always
     # chain __init__ to the base class if the derived class overrides it.
 
-    # #lets redefine B now, to chain the inits to the base class.
-    # class B(A):
-    #     def __init__(self):
-    #         A.__init__(self)
-    #         self.b1 = "b1"
+    #lets redefine B now, to chain the inits to the base class.
+    class B(A):
+        def __init__(self):
+            A.__init__(self)
+            self.b1 = "b1"
 
-    # b = B()
-    # assert None == getattr(b, "a1", None)
-    # assert __ == getattr(b, "b1", None)
-    # b.append("orange")
-    # assert __ == b.a1
+    b = B()
+    assert [] == getattr(b, "a1", None)
+    assert "b1" == getattr(b, "b1", None)
+    b.append("orange")
+    assert ["orange"] == b.a1
 
 def test_inheritance_invoking_using_super():
     #super can be used instead of explicitly invoking base.

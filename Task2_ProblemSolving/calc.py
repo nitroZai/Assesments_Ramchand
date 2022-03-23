@@ -1,4 +1,6 @@
 
+#TODO: Input has to handled 
+
 n1 = int(input("Enter the number"))
 count = 0
 

@@ -4,17 +4,17 @@
 # Binary Search on the Array
 
 
-arr = [1,2,3,4,5,6,7,8,9,10]
-
-
+arr = [1,2,3,4,45,-1,-3,-4]
+arr.sort()
+print(arr)
 low = 0
 high = len(arr) - 1
 
-target = 7
+target = -4
 
 while low <= high: 
     
-    mid = (low + high)//2
+    mid = (low + high)//2 #Floor value
 
     if arr[mid] == target:
         print("The Target element is found!")
